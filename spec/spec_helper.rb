@@ -27,18 +27,21 @@ RSpec.configure do |config|
     #     be_bigger_than(2).and_smaller_than(4).description
     #     # => "be bigger than 2 and smaller than 4"
     # ...rather than:
-    #     # => "be bigger than 2"
+    #     # => "be b igger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
 
-  Capybara.javascript_driver = :webkit
+ Capybara.javascript_driver = :webkit
   Capybara.current_driver = :webkit
   Capybara.default_driver = :webkit
-
+  Capybara::Screenshot.autosave_on_failure = false
   Capybara::Webkit.configure do |config|
     config.block_unknown_urls
-    config.allow_url('dev.by')
+    config.allow_url('http://www.lostfilm.tv/')
   end
+
+  Capybara::Screenshot.autosave_on_failure = false
+
 
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.

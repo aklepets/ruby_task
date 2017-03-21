@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara-webkit'
   gem 'pry'
+  gem 'capybara-screenshot'
 end
 
 group :development do
