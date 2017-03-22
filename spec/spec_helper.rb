@@ -31,16 +31,18 @@ RSpec.configure do |config|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
 
- Capybara.javascript_driver = :webkit
-  Capybara.current_driver = :webkit
-  Capybara.default_driver = :webkit
-  Capybara::Screenshot.autosave_on_failure = false
-  Capybara::Webkit.configure do |config|
-    config.block_unknown_urls
-    config.allow_url('http://www.lostfilm.tv/')
-  end
+Capybara.register_driver :selenium do |app|  
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
 
+Capybara.javascript_driver = :chrome
+
+Capybara.configure do |config|  
+  config.default_max_wait_time = 10 # seconds
+  config.default_driver        = :selenium
+end  
   Capybara::Screenshot.autosave_on_failure = false
+ 
 
 
   # rspec-mocks config goes here. You can use an alternate test double
