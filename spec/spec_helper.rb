@@ -40,10 +40,9 @@ Capybara.javascript_driver = :chrome
 Capybara.configure do |config|  
   config.default_max_wait_time = 10 # seconds
   config.default_driver        = :selenium
+
 end  
   Capybara::Screenshot.autosave_on_failure = false
- 
-
 
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.
