@@ -31,15 +31,16 @@ RSpec.configure do |config|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
 
-Capybara.register_driver :selenium do |app|  
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+Capybara.register_driver :selenium_chrome do |app|
+  caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => ["--start-maximized"]})
+  $driver = Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: caps)
 end
 
 Capybara.javascript_driver = :chrome
 
 Capybara.configure do |config|  
   config.default_max_wait_time = 10 # seconds
-  config.default_driver        = :selenium
+  config.default_driver        = :selenium_chrome
 
 end  
   Capybara::Screenshot.autosave_on_failure = false
